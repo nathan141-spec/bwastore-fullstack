@@ -72,23 +72,35 @@
                             </form>
                         </div>
                 </li>
-            <li class="nav-item">
-              <a class="nav-link d-inline-block mt-2" href="#">
-                <img src="/images/icon-cart-empty.svg" alt="" />
-              </a>
-            </li>
-          </ul>
+                <li class="nav-item">
+                    <a href="{{ route('cart') }}" class="nav-link d-inline-block mt-2">
+                        @php
+                            $carts = \App\Models\Cart::where('users_id', Auth::user()->id)->count();
+                        @endphp
+                        @if($carts > 0)
+                            <img src="/images/icon-cart-filled.svg" alt="" />
+                            <div class="card-badge">{{ $carts }}</div>
+                        @else
+                            <img src="/images/icon-cart-empty.svg" alt="" />
+                        @endif
+                    </a>
+                </li>
+            </ul>
 
-          <!-- Mobile Menu -->
-          <ul class="navbar-nav d-block d-lg-none">
-            <li class="nav-item">
-              <a class="nav-link" href="#"> Hi, Miko </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link d-inline-block" href="#"> Cart </a>
-            </li>
-          </ul>
-          @endauth
-        </div>
-      </div>
-    </nav>
+            <ul class="navbar-nav d-block d-lg-none">
+                <li class="nav-item">
+                    <a href="{{ route('dashboard') }}" class="nav-link">
+                        Hi, {{ Auth::user()->name }}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('cart') }}" class="nav-link d-inline-block">
+                        Cart
+                    </a>
+                </li>
+            </ul>    
+        @endauth
+        
+    </div>
+    </div>
+</nav>
