@@ -52,6 +52,12 @@ class CheckoutController extends Controller
 
         }
 
+        // Delete cart data
+        Cart::with(['product','user'])
+                ->where('users_id', Auth::user()->id)
+                ->delete();
+
+
         // Konfigurasi midtrans
         Config::$serverKey = config('services.midtrans.serverKey');
         Config::$isProduction = config('services.midtrans.isProduction');
