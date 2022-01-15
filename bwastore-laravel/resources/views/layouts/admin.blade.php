@@ -45,7 +45,7 @@
               class="list-group-item list-group-item-action {{ (request()->is('admin/category*')) ? 'active' : '' }}"
               >Categories</a>
             <a
-              href="#"
+              href="{{ route('transaction.index') }}"
               class="list-group-item list-group-item-action"
               >Transactions</a>
               <a
